@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>X-Option | Trading Platform</title>
+  <title>X-Option | Binary & Forex Trading</title>
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Chart.js, Financial Charting, & Hammer.js for Chart Navigation -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
@@ -18,29 +18,21 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
   <style>
     :root {
-      /* Palette: Soft Purple & Smooth Golden Yellow */
-      --bg-dark: #0e0b16;
-      --bg-surface: #161224;
-      --bg-elevated: #1e1832;
-      --bg-input: #26203d;
+      --bg-dark: #08090b;
+      --bg-surface: #0f1115;
+      --bg-elevated: #161920;
+      --bg-input: #1c2029;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-gold: rgba(212, 175, 55, 0.3);
       
-      --purple-primary: #a855f7;
-      --purple-light: #c084fc;
-      --purple-soft: #7e22ce;
-      --purple-glow: rgba(168, 85, 247, 0.2);
-
-      --gold-primary: #f1c40f;
-      --gold-light: #f39c12;
-      --gold-soft: #d35400;
-      --gold-glow: rgba(241, 196, 15, 0.2);
-
-      --border-subtle: rgba(168, 85, 247, 0.12);
-      --border-gold: rgba(241, 196, 15, 0.3);
-      --border-purple: rgba(168, 85, 247, 0.35);
+      --gold-primary: #d4af37;
+      --gold-light: #f5d77f;
+      --gold-soft: #ab8d2c;
+      --gold-glow: rgba(212, 175, 55, 0.12);
 
       --text-primary: #f8fafc;
-      --text-secondary: #cbd5e1;
-      --text-muted: #94a3b8;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
 
       --green-call: #10b981;
       --green-call-glow: rgba(16, 185, 129, 0.18);
@@ -69,8 +61,8 @@
     /* Glass Header */
     header {
       height: 64px;
-      background: rgba(22, 18, 36, 0.85);
-      backdrop-filter: blur(14px);
+      background: rgba(15, 17, 21, 0.75);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
@@ -82,32 +74,28 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
-    /* Designed Logo Component */
-    .brand-logo-icon {
-      width: 38px;
-      height: 38px;
-      background: linear-gradient(135deg, var(--purple-soft), var(--bg-elevated));
-      border: 1px solid var(--border-purple);
-      border-radius: 10px;
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-soft));
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 16px var(--purple-glow);
-    }
-
-    .brand-logo-icon svg {
-      width: 22px;
-      height: 22px;
-    }
-
-    .logo-text {
-      font-size: 20px;
+      color: var(--bg-dark);
       font-weight: 800;
+      font-size: 18px;
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
       letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #ffffff 30%, var(--purple-light) 70%, var(--gold-primary));
+      background: linear-gradient(135deg, #ffffff 40%, var(--gold-primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -134,11 +122,11 @@
       outline: none;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
     select.header-selector:hover {
-      border-color: var(--gold-light);
+      border-color: var(--gold-primary);
       background: var(--bg-input);
     }
 
@@ -157,15 +145,14 @@
       background: var(--bg-elevated);
       padding: 6px 16px;
       border-radius: 8px;
-      border: 1px solid var(--border-purple);
+      border: 1px solid var(--border-subtle);
       text-align: right;
       min-width: 140px;
-      box-shadow: 0 0 12px var(--purple-glow);
     }
 
     .balance-label {
       font-size: 10px;
-      color: var(--purple-light);
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       font-weight: 600;
@@ -173,8 +160,8 @@
 
     .balance-val {
       font-size: 15px;
-      font-weight: 800;
-      color: var(--gold-primary);
+      font-weight: 700;
+      color: var(--text-primary);
       letter-spacing: -0.3px;
     }
 
@@ -211,7 +198,7 @@
       appearance: none;
       background: var(--bg-elevated);
       color: var(--text-primary);
-      border: 1px solid var(--border-purple);
+      border: 1px solid var(--border-subtle);
       padding: 8px 36px 8px 16px;
       border-radius: 8px;
       font-weight: 600;
@@ -223,7 +210,7 @@
 
     select.asset-select optgroup {
       background: var(--bg-surface);
-      color: var(--gold-primary);
+      color: var(--gold-light);
       font-weight: 700;
     }
 
@@ -234,13 +221,13 @@
     }
 
     select.asset-select:hover {
-      border-color: var(--purple-light);
+      border-color: rgba(255,255,255,0.2);
     }
 
     .select-wrapper::after {
       content: '▼';
       font-size: 8px;
-      color: var(--purple-light);
+      color: var(--text-secondary);
       position: absolute;
       right: 14px;
       top: 50%;
@@ -250,12 +237,12 @@
 
     .payout-badge {
       font-size: 12px;
-      font-weight: 700;
-      color: var(--gold-primary);
-      background: var(--gold-glow);
+      font-weight: 600;
+      color: var(--green-call);
+      background: var(--green-call-glow);
       padding: 6px 12px;
       border-radius: 20px;
-      border: 1px solid var(--border-gold);
+      border: 1px solid rgba(16, 185, 129, 0.25);
     }
 
     .tf-selector {
@@ -271,7 +258,7 @@
     .tf-btn {
       background: transparent;
       border: none;
-      color: var(--text-muted);
+      color: var(--text-secondary);
       padding: 5px 10px;
       border-radius: 6px;
       font-size: 12px;
@@ -281,9 +268,9 @@
     }
 
     .tf-btn.active {
-      color: var(--gold-primary);
-      background: var(--purple-soft);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      color: var(--gold-light);
+      background: var(--bg-surface);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
 
     .tf-btn:hover:not(.active) {
@@ -301,6 +288,7 @@
       cursor: grabbing;
     }
 
+    /* Interactive Mouse Override Styles */
     .chart-container.mouse-control-active {
       cursor: ns-resize !important;
       cursor: row-resize !important;
@@ -310,15 +298,15 @@
       position: absolute;
       top: 24px;
       left: 24px;
-      background: rgba(22, 18, 36, 0.9);
-      border: 1px solid var(--purple-primary);
+      background: rgba(15, 17, 21, 0.85);
+      border: 1px solid var(--gold-primary);
       border-radius: 8px;
       padding: 8px 14px;
       font-size: 12px;
       font-weight: 600;
-      color: var(--purple-light);
+      color: var(--gold-light);
       backdrop-filter: blur(8px);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
       display: none;
       pointer-events: none;
       z-index: 50;
@@ -330,19 +318,20 @@
       display: flex;
     }
 
+    /* Timeframe Candle Countdown HUD */
     .candle-timer-hud {
       position: absolute;
       top: 24px;
       right: 24px;
-      background: rgba(22, 18, 36, 0.9);
+      background: rgba(15, 17, 21, 0.85);
       border: 1px solid var(--border-gold);
       border-radius: 8px;
       padding: 6px 14px;
       font-size: 12px;
       font-weight: 700;
-      color: var(--gold-primary);
+      color: var(--gold-light);
       backdrop-filter: blur(8px);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -354,12 +343,12 @@
       top: 62px;
       right: 24px;
       background: rgba(168, 85, 247, 0.15);
-      border: 1px solid var(--purple-primary);
+      border: 1px solid rgba(168, 85, 247, 0.4);
       border-radius: 8px;
       padding: 6px 12px;
       font-size: 11px;
       font-weight: 700;
-      color: var(--purple-light);
+      color: #c084fc;
       backdrop-filter: blur(8px);
       display: none;
       align-items: center;
@@ -371,20 +360,21 @@
       display: flex;
     }
 
+    /* Reset Zoom / Pan Floating Control */
     .btn-reset-zoom {
       position: absolute;
       bottom: 24px;
       right: 24px;
-      background: rgba(22, 18, 36, 0.9);
+      background: rgba(15, 17, 21, 0.9);
       border: 1px solid var(--border-gold);
-      color: var(--gold-primary);
+      color: var(--gold-light);
       padding: 6px 14px;
       border-radius: 8px;
       font-size: 11px;
       font-weight: 700;
       cursor: pointer;
       backdrop-filter: blur(8px);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
       display: none;
       align-items: center;
       gap: 6px;
@@ -417,7 +407,7 @@
       justify-content: space-between;
       padding: 0 24px;
       border-bottom: 1px solid var(--border-subtle);
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.2);
     }
 
     .tab-buttons {
@@ -440,7 +430,7 @@
 
     .tab-btn.active {
       color: var(--gold-primary);
-      border-bottom-color: var(--purple-primary);
+      border-bottom-color: var(--gold-primary);
     }
 
     .btn-close-all {
@@ -466,10 +456,15 @@
       transform: translateY(-1px);
     }
 
+    .btn-close-all:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
     .btn-close-all:disabled {
       opacity: 0.4;
       cursor: not-allowed;
       box-shadow: none;
+      transform: none;
     }
 
     .table-container {
@@ -485,9 +480,9 @@
     }
 
     .orders-table th {
-      color: var(--purple-light);
+      color: var(--text-muted);
       padding: 12px 24px;
-      font-weight: 600;
+      font-weight: 500;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -509,11 +504,11 @@
       align-items: center;
       padding: 4px 10px;
       border-radius: 20px;
-      background: var(--purple-glow);
-      color: var(--purple-light);
+      background: var(--gold-glow);
+      color: var(--gold-light);
       font-weight: 600;
       font-size: 11px;
-      border: 1px solid var(--border-purple);
+      border: 1px solid var(--border-gold);
     }
 
     .btn-close-forex {
@@ -542,7 +537,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      box-shadow: -4px 0 24px rgba(0,0,0,0.4);
+      box-shadow: -4px 0 24px rgba(0,0,0,0.3);
       overflow-y: auto;
     }
 
@@ -554,7 +549,7 @@
 
     .input-group label {
       font-size: 11px;
-      color: var(--purple-light);
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       font-weight: 600;
@@ -563,7 +558,7 @@
     .input-control {
       width: 100%;
       background: var(--bg-input);
-      border: 1px solid var(--border-purple);
+      border: 1px solid var(--border-subtle);
       color: var(--text-primary);
       padding: 12px 14px;
       border-radius: 10px;
@@ -578,10 +573,10 @@
       box-shadow: 0 0 12px var(--gold-glow);
     }
 
-    /* Override Cards */
+    /* Market Manipulator & Quick Action Cards */
     .manipulator-card, .action-card {
       background: var(--bg-elevated);
-      border: 1px solid var(--border-purple);
+      border: 1px solid var(--border-gold);
       border-radius: 12px;
       padding: 14px;
       display: flex;
@@ -597,7 +592,7 @@
     .card-title {
       font-size: 11px;
       font-weight: 700;
-      color: var(--gold-primary);
+      color: var(--gold-light);
       text-transform: uppercase;
       letter-spacing: 0.8px;
       display: flex;
@@ -641,7 +636,7 @@
       cursor: pointer;
       top: 0; left: 0; right: 0; bottom: 0;
       background-color: var(--bg-input);
-      border: 1px solid var(--border-purple);
+      border: 1px solid var(--border-subtle);
       transition: .2s;
       border-radius: 20px;
     }
@@ -659,13 +654,13 @@
     }
 
     input:checked + .slider {
-      background-color: var(--purple-soft);
-      border-color: var(--purple-primary);
+      background-color: var(--gold-soft);
+      border-color: var(--gold-primary);
     }
 
     input:checked + .slider:before {
       transform: translateX(18px);
-      background-color: var(--gold-primary);
+      background-color: #ffffff;
     }
 
     .control-row {
@@ -777,14 +772,14 @@
     }
 
     .btn-trend.active {
-      background: var(--purple-soft);
-      color: var(--gold-primary);
+      background: var(--bg-elevated);
+      color: var(--gold-light);
       box-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
 
     .trade-calc {
       background: var(--bg-elevated);
-      border: 1px solid var(--border-purple);
+      border: 1px solid var(--border-subtle);
       padding: 12px 14px;
       border-radius: 10px;
       display: flex;
@@ -801,10 +796,10 @@
     .calc-value {
       font-size: 14px;
       font-weight: 700;
-      color: var(--gold-primary);
+      color: var(--green-call);
     }
 
-    /* Action Buttons */
+    /* Soft Action Buttons */
     .actions-group {
       display: flex;
       flex-direction: column;
@@ -817,7 +812,7 @@
       border: none;
       border-radius: 12px;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 700;
       color: #fff;
       cursor: pointer;
       letter-spacing: 0.3px;
@@ -880,8 +875,8 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    .badge-demo { background: var(--purple-glow); color: var(--purple-light); border: 1px solid var(--border-purple); }
-    .badge-real { background: var(--gold-glow); color: var(--gold-primary); border: 1px solid var(--border-gold); }
+    .badge-demo { background: var(--gold-glow); color: var(--gold-light); border: 1px solid var(--border-gold); }
+    .badge-real { background: var(--green-call-glow); color: var(--green-call); border: 1px solid rgba(16, 185, 129, 0.3); }
 
     .badge-mode {
       font-size: 10px;
@@ -892,8 +887,8 @@
       letter-spacing: 0.5px;
       margin-left: 4px;
     }
-    .badge-binary { background: rgba(168, 85, 247, 0.18); color: var(--purple-light); border: 1px solid var(--border-purple); }
-    .badge-forex { background: rgba(241, 196, 15, 0.18); color: var(--gold-primary); border: 1px solid var(--border-gold); }
+    .badge-binary { background: rgba(59, 130, 246, 0.18); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .badge-forex { background: rgba(168, 85, 247, 0.18); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
 
     .sl-tp-subtext {
       font-size: 10px;
@@ -907,16 +902,8 @@
   <!-- Header -->
   <header>
     <div class="brand">
-      <!-- Designed Custom Logo SVG -->
-      <div class="brand-logo-icon">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 24L13 16L18 20L26 8" stroke="#f1c40f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M20 8H26V14" stroke="#f1c40f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="13" cy="16" r="2" fill="#a855f7"/>
-          <circle cx="18" cy="20" r="2" fill="#a855f7"/>
-        </svg>
-      </div>
-      <div class="logo-text">X-OPTION</div>
+      <div class="logo-badge">X</div>
+      <div class="logo">OPTION</div>
     </div>
     
     <div class="account-summary">
@@ -949,7 +936,7 @@
     <!-- Chart Area -->
     <div class="main-area">
       <div class="asset-bar">
-        <!-- Asset Menu -->
+        <!-- Asset Menu Split by Stocks and Currencies -->
         <div class="select-wrapper">
           <select class="asset-select" id="assetSelect" onchange="changeAsset()">
             <optgroup label="Currencies / Forex">
@@ -973,7 +960,7 @@
         </div>
         <div class="payout-badge" id="payoutBadge">+85% Return</div>
 
-        <!-- Timeframe Toolbar -->
+        <!-- Expanded Timeframe Toolbar -->
         <div class="tf-selector">
           <button class="tf-btn active" onclick="setTimeframe(60, this)">1m</button>
           <button class="tf-btn" onclick="setTimeframe(300, this)">5m</button>
@@ -1003,7 +990,7 @@
           <button onclick="clearTargetClosePrice()" style="background:none; border:none; color:#f43f5e; cursor:pointer; font-weight:800; margin-left:4px;">✕</button>
         </div>
 
-        <!-- Reset Zoom Control -->
+        <!-- Floating Reset Zoom / Live Mode Control -->
         <button class="btn-reset-zoom" id="resetZoomBtn" onclick="resetChartView()">
           <span>↺ LIVE MARKET</span>
         </button>
@@ -1072,13 +1059,13 @@
       <div class="manipulator-card">
         <div class="card-title">
           <span>Market Override</span>
-          <span style="font-size: 9px; color: var(--purple-light);">● DEV MODE</span>
+          <span style="font-size: 9px; color: var(--gold-primary);">● DEV MODE</span>
         </div>
 
         <!-- Mouse Control Toggle -->
         <div class="toggle-row">
           <span class="toggle-label">
-            <span>🖱️</span> Drag Price Override
+            <span>🖱️</span> Mouse Drag Control
           </span>
           <label class="switch">
             <input type="checkbox" id="mouseControlToggle" onchange="toggleMouseControl(this.checked)">
@@ -1101,10 +1088,10 @@
 
         <!-- Timeframe Candle Close Override -->
         <div class="input-group" style="margin-top: 4px; border-top: 1px dashed var(--border-subtle); padding-top: 8px;">
-          <label style="color: var(--purple-light);">🎯 Lock Target Candle Close</label>
+          <label style="color: #c084fc;">🎯 Lock Target Candle Close</label>
           <div style="display: flex; gap: 8px;">
-            <input type="number" id="targetCloseInput" class="input-control" step="0.0001" placeholder="Target Close Price" style="padding: 8px 12px; font-size: 13px;">
-            <button class="btn-bump" onclick="setTargetClosePrice()" style="flex: 0 0 70px; background: rgba(168,85,247,0.15); color: var(--purple-light); border-color: var(--border-purple);">LOCK</button>
+            <input type="number" id="targetCloseInput" class="input-control" step="0.0001" placeholder="Target Close Price" style="padding: 8px 12px; font-size: 13px; border-color: rgba(168,85,247,0.3);">
+            <button class="btn-bump" onclick="setTargetClosePrice()" style="flex: 0 0 70px; background: rgba(168,85,247,0.15); color: #c084fc; border-color: rgba(168,85,247,0.4);">LOCK</button>
           </div>
         </div>
 
@@ -1193,7 +1180,7 @@
 
         <div class="trade-calc">
           <span class="calc-label">Req. Margin</span>
-          <span class="calc-value" id="marginDisplay" style="color: var(--gold-primary);">$108.50</span>
+          <span class="calc-value" id="marginDisplay" style="color: var(--gold-light);">$108.50</span>
         </div>
       </div>
 
@@ -1215,7 +1202,7 @@
   <script>
     // State Initialization
     let currentAccountMode = 'demo';
-    let currentTradingMode = 'binary';
+    let currentTradingMode = 'binary'; // 'binary' or 'forex'
     let balances = { demo: 10000.00, real: 250.00 };
     const payoutRate = 0.85;
 
@@ -1224,7 +1211,7 @@
     let priceDecimals = 4;
 
     let activeTrades = [];
-    let tfSeconds = 60;
+    let tfSeconds = 60; // Default 1m timeframe
     let candleStartTime = Date.now();
     let marketBias = 'none';
 
@@ -1264,7 +1251,7 @@
     const targetCloseInput = document.getElementById('targetCloseInput');
     const closeAllBtn = document.getElementById('closeAllBtn');
 
-    // Chart Container Elements
+    // Chart Container & Mouse Control Elements
     const chartContainer = document.getElementById('chartContainer');
     const mouseDragOverlay = document.getElementById('mouseDragOverlay');
     const dragOffsetVal = document.getElementById('dragOffsetVal');
@@ -1273,12 +1260,13 @@
     const targetCloseVal = document.getElementById('targetCloseVal');
     const resetZoomBtn = document.getElementById('resetZoomBtn');
 
-    // Emergency Controls Elements
+    // Sidebar Emergency Close UI Elements
     const sidebarCloseAllBtn = document.getElementById('sidebarCloseAllBtn');
     const closeForexOnlyBtn = document.getElementById('closeForexOnlyBtn');
     const closeAllBadge = document.getElementById('closeAllBadge');
     const forexCountBadge = document.getElementById('forexCountBadge');
 
+    // Asset Selection Logic
     function changeAsset() {
       const selectedOption = assetSelect.options[assetSelect.selectedIndex];
       currentAsset = selectedOption.value;
@@ -1301,6 +1289,7 @@
       return currentPrice * 0.002;
     }
 
+    // Candle Generation Logic
     let candleData = [];
 
     function generateCandles(seconds) {
@@ -1322,7 +1311,7 @@
     }
     generateCandles(tfSeconds);
 
-    // Chart Configuration
+    // Chart Setup with Zoom / Pan Plugin
     const ctx = document.getElementById('tradingChart').getContext('2d');
     const chart = new Chart(ctx, {
       type: 'candlestick',
@@ -1330,8 +1319,8 @@
         datasets: [{
           label: 'Market Price',
           data: candleData,
-          color: { up: '#10b981', down: '#f43f5e', unchanged: '#f1c40f' },
-          borderColor: { up: '#10b981', down: '#f43f5e', unchanged: '#f1c40f' }
+          color: { up: '#10b981', down: '#f43f5e', unchanged: '#d4af37' },
+          borderColor: { up: '#10b981', down: '#f43f5e', unchanged: '#d4af37' }
         }]
       },
       options: {
@@ -1342,12 +1331,12 @@
           x: {
             type: 'time',
             time: { unit: 'second' },
-            grid: { color: 'rgba(168, 85, 247, 0.06)' },
-            ticks: { color: '#94a3b8', font: { family: 'Inter' } }
+            grid: { color: 'rgba(255, 255, 255, 0.03)' },
+            ticks: { color: '#64748b', font: { family: 'Inter' } }
           },
           y: {
-            grid: { color: 'rgba(168, 85, 247, 0.06)' },
-            ticks: { color: '#94a3b8', font: { family: 'Inter' } }
+            grid: { color: 'rgba(255, 255, 255, 0.03)' },
+            ticks: { color: '#64748b', font: { family: 'Inter' } }
           }
         },
         plugins: {
@@ -1382,6 +1371,7 @@
       resetZoomBtn.classList.remove('visible');
     }
 
+    // --- Dev Mode Mouse Drag Logic ---
     function toggleMouseControl(enabled) {
       isMouseControlEnabled = enabled;
       chart.options.plugins.zoom.pan.enabled = !enabled;
@@ -1425,6 +1415,7 @@
       }
     });
 
+    // --- Dev Mode Target Close Price Logic ---
     function setTargetClosePrice() {
       const targetVal = parseFloat(targetCloseInput.value);
       if (!isNaN(targetVal) && targetVal > 0) {
@@ -1442,6 +1433,7 @@
       updateChartLines();
     }
 
+    // Mode & System Switches
     function switchTradingMode() {
       currentTradingMode = tradingModeSelect.value;
       if (currentTradingMode === 'binary') {
@@ -1575,6 +1567,7 @@
             }
           };
 
+          // Render Stop Loss Chart Line
           if (trade.sl !== null) {
             annotations[`slLine_${trade.id}`] = {
               type: 'line',
@@ -1595,6 +1588,7 @@
             };
           }
 
+          // Render Take Profit Chart Line
           if (trade.tp !== null) {
             annotations[`tpLine_${trade.id}`] = {
               type: 'line',
@@ -1681,7 +1675,7 @@
       updateActiveTradesUI();
     }
 
-    // Engine Loops
+    // Live Tick Loop
     setInterval(() => {
       const currentTime = Date.now();
       const candleTimeElapsed = currentTime - candleStartTime;
@@ -1720,6 +1714,7 @@
       updateCandleOnTick();
     }, 200);
 
+    // Expiry Loop for Binary Options
     setInterval(() => {
       const nowTime = Date.now();
       for (let i = activeTrades.length - 1; i >= 0; i--) {
@@ -1748,6 +1743,7 @@
       updateActiveTradesUI();
     }, 1000);
 
+    // Dynamic UI Updates
     function updateActiveTradesUI() {
       const totalCount = activeTrades.length;
       const forexCount = activeTrades.filter(t => t.mode === 'forex').length;
@@ -1822,6 +1818,7 @@
       });
     }
 
+    // Close Single Forex Position
     function closeForexTrade(tradeId, reason = 'Manual Close') {
       const idx = activeTrades.findIndex(t => t.id === tradeId);
       if (idx !== -1) {
@@ -1838,6 +1835,7 @@
       }
     }
 
+    // Emergency Close All Positions Across System
     function closeAllPositions() {
       for (let i = activeTrades.length - 1; i >= 0; i--) {
         const trade = activeTrades[i];
@@ -1853,6 +1851,7 @@
       updateActiveTradesUI();
     }
 
+    // Close Forex Positions Only
     function closePositionsByMode(targetMode) {
       for (let i = activeTrades.length - 1; i >= 0; i--) {
         const trade = activeTrades[i];
@@ -1864,6 +1863,7 @@
       updateActiveTradesUI();
     }
 
+    // Historical Orders Logging
     function addHistoryRecord(trade, exitPrice, netProfit, closeReason = 'Manual') {
       const tr = document.createElement('tr');
       const pnlClass = netProfit >= 0 ? 'trade-win' : 'trade-loss';
@@ -1886,6 +1886,7 @@
       historyBody.insertBefore(tr, historyBody.firstChild);
     }
 
+    // Order Execution Engine
     function executeTrade(type) {
       const asset = assetSelect.value;
 
@@ -1904,7 +1905,7 @@
           mode: 'binary',
           accountMode: currentAccountMode,
           asset: asset,
-          type: type,
+          type: type, // 'CALL' or 'PUT'
           amount: amount,
           entryPrice: currentPrice,
           expiryTime: Date.now() + (duration * 1000),
@@ -1956,9 +1957,11 @@
       updateActiveTradesUI();
     }
 
+    // Primary Execution Handlers
     callBtn.addEventListener('click', () => executeTrade('CALL'));
     putBtn.addEventListener('click', () => executeTrade('PUT'));
 
+    // Dynamic Calculated Outputs
     investmentInput.addEventListener('input', () => {
       const val = parseFloat(investmentInput.value) || 0;
       profitDisplay.textContent = `+$${(val * payoutRate).toFixed(2)}`;
@@ -1968,6 +1971,7 @@
       balanceDisplay.textContent = `$${balances[currentAccountMode].toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
 
+    // Dock Navigation Tabs
     function switchTab(tab) {
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
@@ -1981,6 +1985,7 @@
       }
     }
 
+    // Initial state sync
     updateBalance();
   </script>
 </body>
