@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#070a0f">
-<title>NOVEXA V5 — Simulation Terminal</title>
+<title>NOVEXA V5.2 — Simulation Terminal</title>
 <style>
 :root{
   --bg:#06080c;--panel:#0c1118;--panel2:#111925;--line:#202b39;--line2:#2b3a4d;
@@ -25,12 +25,17 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .content{padding:20px;max-width:1900px;margin:auto}.page{display:none}.page.active{display:block;animation:fade .22s ease}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .card{background:linear-gradient(180deg,#111821,#0c1118);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.hero{padding:20px;margin-bottom:16px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:#5aa7ff10;right:-70px;top:-140px;filter:blur(8px)}.hero h1{margin:0 0 5px;font-size:25px}.hero p{color:var(--muted);margin:0;max-width:850px}
 .grid{display:grid;grid-template-columns:minmax(0,1fr) 370px;gap:16px}.chartcard{overflow:hidden}.toolbar{min-height:54px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:8px 12px;flex-wrap:wrap}.tool,.devbtn{border:1px solid var(--line);background:#101620;color:#9aa7b8;padding:8px 10px;border-radius:8px;transition:.18s}.tool.active,.tool:hover,.devbtn:hover,.devbtn.forceactive{border-color:#3c5773;color:#fff;background:#16202d}.devbtn.primary{background:#17304d;border-color:#315b87;color:#fff}.devbtn.dangerbtn{border-color:#6d2a37;color:#ff9aaa}
+.indicatorSpace{display:none;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 12px;border-bottom:1px solid var(--line);background:#0a0f15}.indicatorSpace.show{display:flex}.indicatorSpace .input{flex:1;min-width:240px}.indicatorHelp{width:100%;font-size:10px;color:var(--muted);line-height:1.5}.indicatorStatus{font-size:10px;color:var(--cyan)}
 .chartwrap{height:590px;position:relative;background:#0b1017}.chartwrap canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:none}.chartwrap canvas.dragging{cursor:grabbing}.chartwrap canvas.mouse-control{cursor:ns-resize}.chart-overlay{position:absolute;left:14px;top:12px;pointer-events:none;color:#8996a8;font-size:11px;z-index:3}.crosshair{position:absolute;inset:0;display:none;pointer-events:none;z-index:4}.crosshair .v,.crosshair .h{position:absolute;background:#ffffff25}.crosshair .v{top:0;bottom:0;width:1px}.crosshair .h{left:0;right:0;height:1px}.chartTip{position:absolute;display:none;z-index:5;pointer-events:none;background:#0d141eeb;border:1px solid #2c3d51;border-radius:9px;padding:8px 10px;font-size:11px;line-height:1.55;box-shadow:0 10px 35px #0008;max-width:230px}.chartLiveBtn{position:absolute;right:14px;bottom:12px;z-index:5;display:none}
 .tradepanel{padding:15px}.tabs{display:grid;grid-template-columns:1fr 1fr;margin-bottom:14px;background:#0a0e14;padding:4px;border-radius:10px}.tabs button{border:0;background:transparent;padding:10px;border-radius:8px;color:#8491a3}.tabs button.active{background:#18202c;color:#fff}
 .field{margin:11px 0}.field label{display:flex;justify-content:space-between;color:#8b98aa;font-size:11px;margin-bottom:6px}.amount{display:flex}.amount input{flex:1;min-width:0;background:#111722;border:1px solid var(--line);border-radius:9px 0 0 9px;color:#fff;padding:11px}.amount button{border:1px solid var(--line);border-left:0;background:#151c27;padding:0 10px}.quick,.quick2{display:flex;gap:5px;margin-top:6px}.quick button,.quick2 button{flex:1;border:1px solid var(--line);background:#101620;border-radius:7px;padding:6px;color:#8e9bad}.quick2 button.active{background:#17273a;border-color:#3d628b;color:#fff}.potential{display:flex;justify-content:space-between;background:#0a0f15;border:1px solid var(--line);padding:11px;border-radius:10px;margin:10px 0}.actiongrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.buy,.sell{border:0;border-radius:10px;padding:14px;color:#fff;font-weight:900;transition:.15s}.buy{background:#0e8d69}.sell{background:#c93f58}.buy:hover,.sell:hover{transform:translateY(-1px);filter:brightness(1.12)}
 .section{margin-top:16px}.section h3,.card h3{font-size:12px;color:#a7b3c2;text-transform:uppercase;letter-spacing:1px;margin:0 0 9px}.list{max-height:290px;overflow:auto}.row{display:flex;justify-content:space-between;gap:10px;padding:10px;border-bottom:1px solid #1a222d}.row:last-child{border:0}.badge{font-size:10px;padding:4px 7px;border-radius:20px;background:#17202c;border:1px solid #26364a}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{padding:16px;position:relative;overflow:hidden}.stat small{color:var(--muted);display:block}.stat b{display:block;font-size:23px;margin-top:7px}.stat .micro{font-size:10px;color:#718196;margin-top:4px}
 .dashgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:16px}.panelpad{padding:17px}.miniChart{height:260px;width:100%}.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);font-size:12px;vertical-align:middle}.table th{color:#7e8b9d;font-weight:600;position:sticky;top:0;background:#0d131c;z-index:1}.marketgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.marketcard{padding:16px}.marketcard .mhead{display:flex;justify-content:space-between}.marketcard b{font-size:18px}.settings{max-width:1000px}.setting{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:16px;border-bottom:1px solid var(--line)}.switch{width:45px;height:25px;border-radius:30px;background:#2a3442;padding:3px;flex:0 0 auto}.switch i{display:block;width:19px;height:19px;border-radius:50%;background:#8996a8;transition:.2s}.switch.on{background:#0e8d69}.switch.on i{transform:translateX(20px);background:#fff}
 .devgrid,.toolgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.devcard{padding:17px}.devcard h3{margin:0 0 5px}.devcard p{color:var(--muted);font-size:12px}.btnrow{display:flex;flex-wrap:wrap;gap:7px}.range{width:100%;accent-color:#5aa7ff}.toastbox{position:fixed;right:18px;bottom:18px;display:grid;gap:8px;z-index:60}.toast{background:#121923;border:1px solid #2b394b;padding:11px 14px;border-radius:10px;box-shadow:var(--shadow);animation:toast .25s}.toast.good{box-shadow:0 0 30px #19d99b22}.toast.bad{box-shadow:0 0 30px #ff587322}@keyframes toast{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+.chartcard:fullscreen{background:#070b11;border-radius:0;padding:0}.chartcard:fullscreen .chartwrap{height:calc(100vh - 112px)}
+.tradepanel .row.currentWin{background:#19d99b08}.tradepanel .row.currentLoss{background:#ff587308}
+button:disabled{opacity:.45;cursor:not-allowed;filter:none!important;transform:none!important}
 .modal{position:fixed;inset:0;background:#000a;display:none;place-items:center;z-index:50;padding:18px}.modal.show{display:grid}.modalin{width:min(560px,94vw);max-height:88vh;overflow:auto;padding:22px;background:#0e141d;border:1px solid #2a3748;border-radius:16px}.result{font-size:40px;font-weight:900;text-align:center;padding:20px}.muted,.sub{color:var(--muted)}.pill{display:inline-flex;gap:6px;align-items:center;padding:5px 8px;border:1px solid var(--line);border-radius:99px;color:#9eacbd;font-size:10px}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}.dot.red{background:var(--red);box-shadow:0 0 12px var(--red)}.dot.gold{background:var(--gold);box-shadow:0 0 12px var(--gold)}
 .replaybar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;padding:12px;border-top:1px solid var(--line);background:#0a0f15}.replaybar button{border:1px solid var(--line);background:#111722;padding:7px 10px;border-radius:8px}.replaybar input{flex:1;min-width:150px}.metricgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric{background:#0a0f15;border:1px solid var(--line);border-radius:11px;padding:12px}.metric b{display:block;font-size:18px;margin-top:5px}.kbd{border:1px solid #344357;background:#141c27;padding:2px 6px;border-radius:5px;font-size:10px}.progress{height:10px;border-radius:20px;background:#141c27;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,#5aa7ff,#19d99b);width:0}.achievement{padding:11px;border:1px solid var(--line);border-radius:10px;background:#0a0f15}.achievement.locked{opacity:.45}.achievement strong{display:block;margin-bottom:3px}.mobileNav{display:none}.flash{animation:flash .55s ease}@keyframes flash{0%{filter:brightness(1)}45%{filter:brightness(1.8)}100%{filter:brightness(1)}}.pulseWin{animation:pulseWin .75s}.pulseLoss{animation:pulseLoss .75s}@keyframes pulseWin{45%{box-shadow:0 0 30px #19d99b55}}@keyframes pulseLoss{45%{box-shadow:0 0 30px #ff587355}}
 .compact .content{padding:12px}.compact .hero{padding:14px}.compact .stat{padding:12px}.compact .panelpad{padding:12px}.compact .row{padding:8px}.compact .chartwrap{height:520px}
@@ -42,7 +47,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 <body>
 <div class="app">
 <aside class="side">
-  <div class="brand"><div class="logo">N</div><div><b>NOVEXA</b><small>V5 SIMULATION TERMINAL</small></div></div>
+  <div class="brand"><div class="logo">N</div><div><b>NOVEXA</b><small>V5.2 SIMULATION TERMINAL</small></div></div>
   <nav class="nav" id="desktopNav" aria-label="Primary navigation"></nav>
   <div class="sidefoot">DEMO ONLY<br>Virtual funds • no real orders<br><span class="kbd">Ctrl K</span> Command palette</div>
 </aside>
@@ -62,7 +67,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 
 <div class="content">
 <section id="dashboard" class="page active">
-  <div class="hero card"><h1>NOVEXA V5</h1><p>Professional browser-based market simulation with independent asset engines, true replay trading, advanced charting, analytics, journaling and scenario testing.</p></div>
+  <div class="hero card"><h1>NOVEXA V5.2</h1><p>Professional browser-based market simulation with independent asset engines, true replay trading, advanced charting, analytics, journaling and scenario testing.</p></div>
   <div class="stats">
     <div class="card stat"><small>Balance</small><b id="sBal">$10,000</b><div class="micro">Virtual funds</div></div>
     <div class="card stat"><small>Today's P/L</small><b id="sPL" class="success">$0</b><div class="micro" id="sPLMeta">0 closed today</div></div>
@@ -88,6 +93,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
         <button class="tool" data-indicator="ema" onclick="setIndicator('ema',this)">EMA</button>
         <button class="tool" data-indicator="bb" onclick="setIndicator('bb',this)">Bollinger</button>
         <button class="tool" data-indicator="rsi" onclick="setIndicator('rsi',this)">RSI</button>
+        <button class="tool" data-indicator="custom" onclick="toggleCustomIndicatorSpace(this)">Custom +</button>
         <button class="tool" data-indicator="none" onclick="setIndicator('none',this)">Clear</button>
         <select id="timeframe" class="tool" onchange="setTimeframe(this.value)" aria-label="Chart timeframe">
           <option value="5">5s</option><option value="15">15s</option><option value="30">30s</option><option value="60" selected>1m</option><option value="300">5m</option>
@@ -95,7 +101,14 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
         <button class="tool" onclick="resetZoom()">Reset</button>
         <button class="tool" onclick="goLive()">Go Live</button>
         <button class="tool" onclick="toggleFullscreen()">⛶</button>
-        <span style="margin-left:auto" class="sub"><span class="dot" style="display:inline-block"></span> <span id="modeLabel">LIVE</span> • <span id="regimeLabel">RANGE</span></span>
+        <span style="margin-left:auto" class="sub"><span class="dot" style="display:inline-block"></span> <span id="modeLabel">LIVE</span> • <span id="regimeLabel">CALM</span></span>
+      </div>
+      <div class="indicatorSpace" id="customIndicatorSpace">
+        <input id="customIndicatorFormula" class="input" value="EMA(9)" spellcheck="false" aria-label="Custom indicator formula" placeholder="Example: (EMA(9) + SMA(20)) / 2">
+        <button class="devbtn primary" onclick="applyCustomIndicator()">Apply Indicator</button>
+        <button class="devbtn" onclick="clearCustomIndicator()">Clear</button>
+        <span class="indicatorStatus" id="customIndicatorStatus">Ready</span>
+        <div class="indicatorHelp"><b>Formula space:</b> CLOSE, OPEN, HIGH, LOW, HL2, HLC3, SMA(n), EMA(n), WMA(n), ATR(n), numbers, + − × ÷ and parentheses. Examples: <span class="kbd">EMA(9)</span> <span class="kbd">(EMA(9)+SMA(20))/2</span> <span class="kbd">HL2+ATR(14)</span>. Runs locally without eval.</div>
       </div>
       <div class="chartwrap" id="chartWrap">
         <canvas id="chart" aria-label="Interactive simulated price chart"></canvas>
@@ -173,7 +186,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     </div>
     <div class="card devcard"><h3>Achievements</h3><div id="achievementList" style="display:grid;gap:8px"></div></div>
     <div class="card devcard"><h3>Demo Leaderboard</h3><p>Local illustrative ranking only — no online players or real prizes.</p><div id="leaderboard"></div></div>
-    <div class="card devcard"><h3>Session Data</h3><p>Export the complete V5 simulator state, or restore a previously exported session.</p>
+    <div class="card devcard"><h3>Session Data</h3><p>Export the complete V5.2 simulator state, or restore a previously exported session.</p>
       <div class="btnrow"><button class="devbtn primary" onclick="exportSession()">Export JSON</button><button class="devbtn" onclick="document.getElementById('importFile').click()">Import JSON</button><input id="importFile" type="file" accept="application/json" hidden onchange="importSession(this.files[0])"></div>
     </div>
     <div class="card devcard"><h3>Scenario Presets</h3><p>Apply a controlled demo scenario to the selected market.</p>
@@ -182,11 +195,11 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   </div>
 </section>
 
-<section id="settings" class="page"><div class="hero card"><h1>Settings</h1><p>Customize the V5 simulator experience.</p></div><div class="card settings">
-  <div class="setting"><div><b>Notifications</b><div class="sub">Trade results, market events and system messages</div></div><div id="notificationsSwitch" class="switch on" onclick="toggleSetting('notifications')" role="switch" aria-label="Notifications"><i></i></div></div>
-  <div class="setting"><div><b>Sound effects</b><div class="sub">Trade and notification sounds</div></div><div id="soundSwitch" class="switch on" onclick="toggleSetting('sound')" role="switch" aria-label="Sound effects"><i></i></div></div>
-  <div class="setting"><div><b>Auto-save</b><div class="sub">Persist your V5 virtual account in this browser</div></div><div id="saveSwitch" class="switch on" onclick="toggleSetting('save')" role="switch" aria-label="Auto save"><i></i></div></div>
-  <div class="setting"><div><b>Compact mode</b><div class="sub">Reduce spacing across panels</div></div><div id="compactSwitch" class="switch" onclick="toggleSetting('compact')" role="switch" aria-label="Compact mode"><i></i></div></div>
+<section id="settings" class="page"><div class="hero card"><h1>Settings</h1><p>Customize the V5.2 simulator experience.</p></div><div class="card settings">
+  <div class="setting"><div><b>Notifications</b><div class="sub">Trade results, market events and system messages</div></div><div id="notificationsSwitch" class="switch on" onclick="toggleSetting('notifications')" role="switch" tabindex="0" aria-label="Notifications" onkeydown="switchKey(event,'notifications')"><i></i></div></div>
+  <div class="setting"><div><b>Sound effects</b><div class="sub">Trade and notification sounds</div></div><div id="soundSwitch" class="switch on" onclick="toggleSetting('sound')" role="switch" tabindex="0" aria-label="Sound effects" onkeydown="switchKey(event,'sound')"><i></i></div></div>
+  <div class="setting"><div><b>Auto-save</b><div class="sub">Persist your V5 virtual account in this browser</div></div><div id="saveSwitch" class="switch on" onclick="toggleSetting('save')" role="switch" tabindex="0" aria-label="Auto save" onkeydown="switchKey(event,'save')"><i></i></div></div>
+  <div class="setting"><div><b>Compact mode</b><div class="sub">Reduce spacing across panels</div></div><div id="compactSwitch" class="switch" onclick="toggleSetting('compact')" role="switch" tabindex="0" aria-label="Compact mode" onkeydown="switchKey(event,'compact')"><i></i></div></div>
   <div class="setting"><div><b>Keyboard shortcuts</b><div class="sub"><span class="kbd">H</span> Higher · <span class="kbd">L</span> Lower · <span class="kbd">Space</span> Pause · <span class="kbd">Ctrl K</span> Commands</div></div></div>
   <div class="setting"><div><b>Export trade history</b><div class="sub">Download completed simulated positions as CSV</div></div><button class="devbtn" onclick="exportCSV()">EXPORT CSV</button></div>
   <div class="setting"><div><b>Reset account</b><div class="sub">Restore $10,000 and clear V5 demo data</div></div><button class="devbtn dangerbtn" onclick="resetAccount()">RESET</button></div>
@@ -222,7 +235,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 
 const KEY='novexa-v5';
 const OLD_KEY='novexa-v4';
-const VERSION=5;
+const VERSION='5.2';
 const PAYOUT=1.85;
 const NAV=[
   ['dashboard','Dashboard','home'],['trade','Trading','chart'],['markets','Markets','globe'],['portfolio','Portfolio','briefcase'],
@@ -252,14 +265,14 @@ const ASSET_CONFIG={
 
 let state={
   version:VERSION,balance:10000,trades:[],history:[],equity:[10000],selected:'EUR/USD',sessionStarted:Date.now(),
-  sessionTrades:0,dailyGoal:250,forceMode:'off',viewMode:'live',
+  sessionTrades:0,dailyGoal:250,forceMode:'off',viewMode:'live',customIndicator:{formula:'EMA(9)',name:'Custom'},
   settings:{sound:true,save:true,compact:false,notifications:true,mouseControl:false},
   markets:{}
 };
 let side='higher',chartType='candle',indicator='none',timeframe=60,chartOffset=0,chartZoom=80,paused=false;
-let replay={data:[],candles:[],index:0,playing:false,timer:null,seed:42,price:null};
+let replay={data:[],candles:[],index:0,playing:false,timer:null,seed:42,price:null,asset:null};
 let audioCtx=null,lastFrame=performance.now(),dirtyChart=true,dirtyDOM=true,lastDOM=0,lastMini=0,currentJournalId=null;
-let lastTopPrice=null;
+let lastTopPrice=null,lastFast=0,lastOpenRefresh=0,lastBackgroundTick=0,lastTradeAt=0;
 
 function icon(name){return '<svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[name]+'</svg>'}
 function buildNav(){
@@ -267,7 +280,7 @@ function buildNav(){
   mobileNav.innerHTML=NAV.slice(0,9).map(([id,label,ic],i)=>`<button class="${i===0?'active':''}" data-page="${id}" onclick="page('${id}',this)" aria-label="${label}">${icon(ic)}<span>${label}</span></button>`).join('');
 }
 function freshMarket(name){
-  const cfg=ASSET_CONFIG[name],m={name,price:cfg.base,target:cfg.base,prevPrice:cfg.base,regime:'range',volatility:7,candles:[],lastCandleAt:performance.now(),lastTickAt:performance.now()};
+  const cfg=ASSET_CONFIG[name],m={name,price:cfg.base,target:cfg.base,prevPrice:cfg.base,regime:'calm',volatility:7,candles:[],lastCandleAt:performance.now(),lastTickAt:performance.now()};
   let p=cfg.base;
   for(let i=0;i<220;i++){let o=p,drift=(Math.random()-.5)*p*cfg.vol*.65;p=Math.max(.00001,p+drift);m.candles.push({o,h:Math.max(o,p)+Math.random()*p*cfg.vol*.2,l:Math.min(o,p)-Math.random()*p*cfg.vol*.2,c:p,t:Date.now()-((220-i)*1000)});}
   m.price=p;m.target=p;m.prevPrice=p;return m;
@@ -317,11 +330,18 @@ function tabs(){higherTab.classList.toggle('active',side==='higher');lowerTab.cl
 function amt(n){amount.value=n;updatePotential()}
 function setExpiry(n,b){expiry.value=n;expiryText.textContent=n+'s';document.querySelectorAll('.quick2 button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active')}
 function updatePotential(){const a=Math.max(0,Number(amount.value)||0);potentialProfit.textContent='+'+fmt(a*(PAYOUT-1))}
-function changeAsset(a){state.selected=a;assetSelect.value=a;chartOffset=0;syncMarketControls();dirtyChart=true;dirtyDOM=true;drawChart();toast(a+' selected')}
+function changeAsset(a){
+  if(!ASSET_CONFIG[a])return;
+  const replayOpen=state.trades.filter(t=>t.mode==='replay');
+  if(state.viewMode==='replay'&&replayOpen.length&&a!==state.selected){assetSelect.value=state.selected;toast('Finish replay positions before switching assets','bad');return}
+  state.selected=a;assetSelect.value=a;chartOffset=0;syncMarketControls();
+  if(state.viewMode==='replay'&&replay.asset!==a)buildReplay();
+  save();dirtyChart=true;dirtyDOM=true;drawChart();toast(a+' selected')
+}
 function syncMarketControls(){const m=market();volatility.value=m.volatility;volVal.textContent=m.volatility;regimeLabel.textContent=m.regime.toUpperCase();document.querySelectorAll('[data-regime]').forEach(b=>b.classList.toggle('forceactive',b.dataset.regime===m.regime))}
 function setTimeframe(v){timeframe=+v;toast('Timeframe '+v+'s');dirtyChart=true}
 function setChartType(t,b){chartType=t;document.querySelectorAll('[data-chart]').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');dirtyChart=true}
-function setIndicator(v,b){indicator=v;document.querySelectorAll('[data-indicator]').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');dirtyChart=true}
+function setIndicator(v,b){indicator=v;document.querySelectorAll('[data-indicator]').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');if(v!=='custom')customIndicatorSpace.classList.remove('show');dirtyChart=true}
 function setRegime(r){market().regime=r;syncMarketControls();save();toast('Market regime: '+r.toUpperCase());log('Regime set to '+r.toUpperCase())}
 
 function liveTick(dt){
@@ -358,8 +378,12 @@ function setForceMode(mode){
   toast(mode==='off'?'Normal market outcome':mode==='win'?'WIN BIAS • CHART DECIDES':'LOSS BIAS • CHART DECIDES');log('Outcome scenario '+mode.toUpperCase());dirtyDOM=true;
 }
 function openTrade(dir){
-  const a=Math.max(0,Number(amount.value));if(!a||a>state.balance){toast('Insufficient virtual balance','bad');return}
-  const seconds=Math.max(5,+expiry.value),mode=state.viewMode,px=currentPrice();
+  const now=Date.now();if(now-lastTradeAt<250)return;lastTradeAt=now;
+  if(dir!=='higher'&&dir!=='lower')return;
+  const raw=Number(amount.value),a=Number.isFinite(raw)?Math.max(0,Math.min(raw,1e9)):0;
+  if(!a){toast('Enter a valid investment amount','bad');return}if(a>state.balance){toast('Insufficient virtual balance','bad');return}
+  const seconds=Math.max(5,Math.min(120,Number(expiry.value)||30)),mode=state.viewMode,px=currentPrice();
+  if(!Number.isFinite(px)||px<=0){toast('Market price unavailable','bad');return}
   const t={id:'NX-'+Date.now().toString(36).toUpperCase(),asset:state.selected,side:dir,amount:a,entry:px,opened:Date.now(),expiry:seconds,mode,
     strategyTag:(strategyTag.value||'').trim(),journal:'',scenarioAtOpen:mode==='live'?state.forceMode:'replay',scenarioEvents:[],biasStrength:mode==='live'&&state.forceMode!=='off'?1:0};
   if(mode==='live')t.expiresAt=Date.now()+seconds*1000;else{t.replayEntryIndex=replay.index;t.replayExpiresIndex=Math.min(replay.data.length-1,replay.index+seconds)}
@@ -368,7 +392,7 @@ function openTrade(dir){
 }
 function checkTrades(){const now=Date.now();state.trades.filter(t=>t.mode==='live'&&now>=t.expiresAt).slice().forEach(t=>settle(t,marketPriceFor(t.asset)))}
 function marketPriceFor(a){return state.markets[a]?.price??currentPrice()}
-function checkReplayTrades(){state.trades.filter(t=>t.mode==='replay'&&replay.index>=t.replayExpiresIndex).slice().forEach(t=>settle(t,replay.price))}
+function checkReplayTrades(){state.trades.filter(t=>t.mode==='replay'&&t.asset===replay.asset&&replay.index>=t.replayExpiresIndex).slice().forEach(t=>settle(t,replay.price))}
 function settle(t,exitPrice){
   const i=state.trades.indexOf(t);if(i<0)return;
   const won=t.side==='higher'?exitPrice>t.entry:exitPrice<t.entry,payout=won?t.amount*PAYOUT:0,pl=won?t.amount*(PAYOUT-1):-t.amount;
@@ -398,12 +422,12 @@ function render(){
   sWin.textContent=settled.length?Math.round(wins/settled.length*100)+'%':'0%';pPL.textContent=(pl>=0?'+':'')+fmt(pl);pPL.className=pl>=0?'success':'danger';pStreak.textContent=streak();
   aWin.textContent=sWin.textContent;aWins.textContent=wins;aLoss.textContent=losses;aAvg.textContent=settled.length?fmt(pl/settled.length):'$0';
   renderOpen();renderHistory();renderMarkets();renderAnalytics();renderGoal();renderSessionStats();renderRiskCalc();renderAchievements();renderLeaderboard();
-  runtime.innerHTML=`Version: <b>V5</b><br>Mode: <b>${state.viewMode.toUpperCase()}</b><br>Asset: <b>${state.selected}</b><br>Price: <b>${dp(currentPrice())}</b><br>Open positions: <b>${state.trades.length}</b><br>History: <b>${state.history.length}</b><br>Regime: <b>${market().regime.toUpperCase()}</b><br>Engine: <b>LOCAL DEMO V5</b>`;
+  runtime.innerHTML=`Version: <b>V5.2</b><br>Mode: <b>${state.viewMode.toUpperCase()}</b><br>Asset: <b>${state.selected}</b><br>Price: <b>${dp(currentPrice())}</b><br>Open positions: <b>${state.trades.length}</b><br>History: <b>${state.history.length}</b><br>Regime: <b>${market().regime.toUpperCase()}</b><br>Engine: <b>LOCAL DEMO V5.2</b>`;
   dashPerf.innerHTML=`<div class="row"><span>Wins</span><b class="success">${wins}</b></div><div class="row"><span>Losses</span><b class="danger">${losses}</b></div><div class="row"><span>Win rate</span><b>${sWin.textContent}</b></div><div class="row"><span>Net P/L</span><b>${fmt(pl)}</b></div>`;
   updatePotential();syncSwitches();dirtyDOM=false;
 }
 function renderOpen(){
-  const make=(t)=>{const left=t.mode==='replay'?Math.max(0,t.replayExpiresIndex-replay.index)+' steps':Math.max(0,Math.ceil((t.expiresAt-Date.now())/1000))+'s';return `<div class="row"><div><b>${t.asset}</b><div class="sub">${t.id} • ${left} • ${t.mode.toUpperCase()}${t.strategyTag?' • '+escapeHtml(t.strategyTag):''}</div></div><div style="text-align:right"><b class="${t.side==='higher'?'up':'down'}">${t.side.toUpperCase()}</b><div>${fmt(t.amount)}</div></div></div>`};
+  const make=(t)=>{const left=t.mode==='replay'?Math.max(0,t.replayExpiresIndex-replay.index)+' steps':Math.max(0,Math.ceil((t.expiresAt-Date.now())/1000))+'s',px=t.mode==='replay'&&t.asset===replay.asset?replay.price:marketPriceFor(t.asset),ahead=t.side==='higher'?px>t.entry:px<t.entry,status=px===t.entry?'EVEN':ahead?'AHEAD':'BEHIND';return `<div class="row ${ahead?'currentWin':'currentLoss'}"><div><b>${t.asset}</b><div class="sub">${t.id} • ${left} • ${t.mode.toUpperCase()}${t.strategyTag?' • '+escapeHtml(t.strategyTag):''}</div></div><div style="text-align:right"><b class="${t.side==='higher'?'up':'down'}">${t.side.toUpperCase()}</b><div>${fmt(t.amount)} · <span class="${ahead?'success':status==='EVEN'?'gold':'danger'}">${status}</span></div></div></div>`};
   const html=state.trades.length?state.trades.map(make).join(''):'<div class="row muted">No open positions</div>';openList.innerHTML=html;portfolioOpen.innerHTML=html;
   const rp=state.trades.filter(t=>t.mode==='replay');replayOpen.innerHTML=rp.length?rp.map(make).join(''):'<div class="row muted">No replay positions</div>';
 }
@@ -461,7 +485,7 @@ function beep(freq){if(!state.settings.sound)return;try{audioCtx=audioCtx||new (
 function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function devMove(dir){
   if(state.viewMode==='replay'){toast('Developer moves apply to live mode only','bad');return}
-  const m=market(),v=m.price*(.004+Math.random()*.006),next=dir===0?m.price+(Math.random()-.5)*v:m.price+dir*v;m.prevPrice=m.price;m.price=m.target=Math.max(.00001,next);
+  const m=market(),v=m.price*(.00035+Math.random()*.00055),next=dir===0?m.price+(Math.random()-.5)*v:m.price+dir*v;m.prevPrice=m.price;m.price=m.target=Math.max(.00001,next);
   m.candles.push({o:m.prevPrice,h:Math.max(m.prevPrice,m.price),l:Math.min(m.prevPrice,m.price),c:m.price,t:Date.now()});if(m.candles.length>360)m.candles.shift();dirtyChart=true;dirtyDOM=true;toast('Market moved '+(dir>0?'UP':dir<0?'DOWN':'RANDOM'))
 }
 function resetMarket(){if(state.viewMode==='replay'){replayReset();return}state.markets[state.selected]=freshMarket(state.selected);syncMarketControls();dirtyChart=true;dirtyDOM=true;toast('Selected market reset')}
@@ -469,6 +493,7 @@ function resetZoom(){chartOffset=0;chartZoom=80;dirtyChart=true;chartLiveBtn.sty
 function goLive(){chartOffset=0;dirtyChart=true;chartLiveBtn.style.display='none'}
 function togglePause(){if(state.viewMode==='replay'){toggleReplay();return}paused=!paused;pauseBtn.textContent=paused?'▶ Resume':'Ⅱ Pause';toast(paused?'Market paused':'Market resumed');dirtyDOM=true}
 function toggleFullscreen(){document.fullscreenElement?document.exitFullscreen():chartCard.requestFullscreen?.()}
+function switchKey(e,k){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleSetting(k)}}
 function toggleSetting(k){state.settings[k]=!state.settings[k];if(k==='compact')document.body.classList.toggle('compact',state.settings.compact);save();syncSwitches();if(k==='notifications'&&state.settings.notifications)toast('Notifications enabled')}
 function syncSwitches(){['notifications','sound','save','compact'].forEach(k=>{const sw=document.getElementById(k+'Switch');if(sw){sw.classList.toggle('on',!!state.settings[k]);sw.setAttribute('aria-checked',String(!!state.settings[k]))}});notifyBtn.textContent=state.settings.notifications?'🔔 ON':'🔕 OFF';notifyBtn.classList.toggle('forceactive',state.settings.notifications);mouseControlBtn.textContent=state.settings.mouseControl?'🖱 Mouse Control: ON':'🖱 Mouse Control: OFF';mouseControlBtn.classList.toggle('forceactive',state.settings.mouseControl);chart.classList.toggle('mouse-control',state.settings.mouseControl);document.body.classList.toggle('compact',state.settings.compact)}
 function toggleNotifications(){state.settings.notifications=!state.settings.notifications;save();syncSwitches();if(state.settings.notifications)toast('Notifications enabled')}
@@ -478,7 +503,7 @@ function updateMousePrice(e){
   const data=visibleCandles();if(!data.length)return;const hi=Math.max(...data.map(a=>a.h),market().price),lo=Math.min(...data.map(a=>a.l),market().price),range=hi-lo||Math.abs(market().price)*.001,mouseTarget=hi-ratio*range;
   market().target+=(mouseTarget-market().target)*.12;
 }
-function resetAccount(){if(!confirm('Reset the V5 demo account and clear all local simulator data?'))return;localStorage.removeItem(KEY);state={version:VERSION,balance:10000,trades:[],history:[],equity:[10000],selected:'EUR/USD',sessionStarted:Date.now(),sessionTrades:0,dailyGoal:250,forceMode:'off',viewMode:'live',settings:{sound:true,save:true,compact:false,notifications:true,mouseControl:false},markets:{}};ensureMarkets();replayReset();syncMarketControls();dirtyDOM=true;dirtyChart=true;toast('V5 demo account reset')}
+function resetAccount(){if(!confirm('Reset the V5.2 demo account and clear all local simulator data?'))return;localStorage.removeItem(KEY);state={version:VERSION,balance:10000,trades:[],history:[],equity:[10000],selected:'EUR/USD',sessionStarted:Date.now(),sessionTrades:0,dailyGoal:250,forceMode:'off',viewMode:'live',customIndicator:{formula:'EMA(9)',name:'Custom'},settings:{sound:true,save:true,compact:false,notifications:true,mouseControl:false},markets:{}};ensureMarkets();replayReset();syncMarketControls();dirtyDOM=true;dirtyChart=true;toast('V5.2 demo account reset')}
 
 function resizeCanvas(c){
   const r=c.getBoundingClientRect(),d=Math.min(2,devicePixelRatio||1),w=Math.max(1,Math.round(r.width*d)),h=Math.max(1,Math.round(r.height*d));
@@ -490,18 +515,50 @@ function ema(values,n=20){const k=2/(n+1);let out=[],v=values[0]||0;values.forEa
 function sma(values,n=20){return values.map((_,i)=>{const s=values.slice(Math.max(0,i-n+1),i+1);return s.reduce((a,b)=>a+b,0)/s.length})}
 function std(values,n=20){return values.map((_,i)=>{const s=values.slice(Math.max(0,i-n+1),i+1),m=s.reduce((a,b)=>a+b,0)/s.length;return Math.sqrt(s.reduce((a,b)=>a+(b-m)*(b-m),0)/s.length)})}
 function rsi(values,n=14){let out=[50];for(let i=1;i<values.length;i++){const s=values.slice(Math.max(1,i-n+1),i+1);let g=0,l=0;s.forEach((v,j)=>{const prev=values[Math.max(0,i-s.length+j)];const d=v-prev;if(d>=0)g+=d;else l-=d});const rs=l?g/l:g?100:1;out.push(100-100/(1+rs))}return out}
+function wma(values,n=14){n=Math.max(1,Math.round(n));return values.map((_,i)=>{let sum=0,weight=0,w=1;for(let j=Math.max(0,i-n+1);j<=i;j++,w++){sum+=values[j]*w;weight+=w}return weight?sum/weight:values[i]})}
+function atr(data,n=14){n=Math.max(1,Math.round(n));const tr=data.map((d,i)=>{const prev=i?data[i-1].c:d.o;return Math.max(d.h-d.l,Math.abs(d.h-prev),Math.abs(d.l-prev))});return sma(tr,n)}
+function indicatorBinary(a,b,op,len){const aa=Array.isArray(a)?a:Array(len).fill(Number(a)),bb=Array.isArray(b)?b:Array(len).fill(Number(b));return aa.map((v,i)=>{const z=bb[i];if(op==='+')return v+z;if(op==='-')return v-z;if(op==='*')return v*z;if(op==='/')return Math.abs(z)<1e-15?NaN:v/z;return NaN})}
+function customIndicatorSeries(formula,data){
+  const len=data.length,closes=data.map(d=>d.c),opens=data.map(d=>d.o),highs=data.map(d=>d.h),lows=data.map(d=>d.l);
+  const tokens=(String(formula||'').toUpperCase().match(/\d*\.\d+|\d+|[A-Z_]+|[()+\-*/,]/g)||[]);let p=0;
+  const peek=()=>tokens[p],take=()=>tokens[p++];
+  function primary(){
+    const t=take();if(t==null)throw Error('Unexpected end');
+    if(t==='('){const v=expr();if(take()!==')')throw Error('Missing )');return v}
+    if(/^\d/.test(t))return Number(t);
+    if(t==='CLOSE'||t==='C')return closes;if(t==='OPEN'||t==='O')return opens;if(t==='HIGH'||t==='H')return highs;if(t==='LOW'||t==='L')return lows;
+    if(t==='HL2')return highs.map((v,i)=>(v+lows[i])/2);if(t==='HLC3')return highs.map((v,i)=>(v+lows[i]+closes[i])/3);
+    if(['SMA','EMA','WMA','ATR'].includes(t)){
+      if(take()!=='(')throw Error('Expected ( after '+t);const n=Number(take());if(!Number.isFinite(n)||n<1||n>300)throw Error('Period must be 1-300');if(take()!==')')throw Error('Expected )');
+      if(t==='SMA')return sma(closes,n);if(t==='EMA')return ema(closes,n);if(t==='WMA')return wma(closes,n);return atr(data,n);
+    }
+    throw Error('Unknown token '+t)
+  }
+  function unary(){if(peek()==='+'){take();return unary()}if(peek()==='-'){take();const v=unary();return Array.isArray(v)?v.map(x=>-x):-v}return primary()}
+  function term(){let v=unary();while(peek()==='*'||peek()==='/'){const op=take();v=indicatorBinary(v,unary(),op,len)}return v}
+  function expr(){let v=term();while(peek()==='+'||peek()==='-'){const op=take();v=indicatorBinary(v,term(),op,len)}return v}
+  const out=expr();if(p!==tokens.length)throw Error('Unexpected '+tokens[p]);const arr=Array.isArray(out)?out:Array(len).fill(Number(out));if(arr.length!==len||arr.some(v=>!Number.isFinite(v)))throw Error('Formula produced invalid values');return arr;
+}
+function toggleCustomIndicatorSpace(btn){customIndicatorSpace.classList.toggle('show');if(customIndicatorSpace.classList.contains('show')){customIndicatorFormula.value=state.customIndicator?.formula||'EMA(9)';customIndicatorFormula.focus();if(btn)btn.classList.add('active')}}
+function applyCustomIndicator(){
+  const formula=(customIndicatorFormula.value||'').trim();if(!formula){customIndicatorStatus.textContent='Enter a formula';return}
+  try{customIndicatorSeries(formula,visibleCandles());state.customIndicator={...(state.customIndicator||{}),formula};indicator='custom';document.querySelectorAll('[data-indicator]').forEach(x=>x.classList.toggle('active',x.dataset.indicator==='custom'));customIndicatorStatus.textContent='Applied: '+formula;save();dirtyChart=true;toast('Custom indicator applied','good')}catch(e){customIndicatorStatus.textContent=e.message;toast('Indicator formula error: '+e.message,'bad')}
+}
+function clearCustomIndicator(){indicator='none';document.querySelectorAll('[data-indicator]').forEach(x=>x.classList.toggle('active',x.dataset.indicator==='none'));customIndicatorStatus.textContent='Cleared';dirtyChart=true}
 function drawChart(){
   if(!document.getElementById('trade').classList.contains('active')){dirtyChart=false;return}
   const [x,w,h]=resizeCanvas(chart);x.clearRect(0,0,w,h);x.fillStyle='#0b1017';x.fillRect(0,0,w,h);
   const data=visibleCandles();if(data.length<2){dirtyChart=false;return}
+  let customSeries=null;if(indicator==='custom'){try{customSeries=customIndicatorSeries(state.customIndicator?.formula||'EMA(9)',data)}catch(e){customSeries=null}}
   const rsiBand=indicator==='rsi'?90:0,pad={l:62,r:58,t:22,b:34+rsiBand},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
-  let hi=Math.max(...data.map(a=>a.h),currentPrice()),lo=Math.min(...data.map(a=>a.l),currentPrice()),range=hi-lo||1;hi+=range*.08;lo-=range*.08;range=hi-lo;
+  let hi=Math.max(...data.map(a=>a.h),currentPrice(),...(customSeries||[])),lo=Math.min(...data.map(a=>a.l),currentPrice(),...(customSeries||[])),range=hi-lo||1;hi+=range*.08;lo-=range*.08;range=hi-lo;
   const scale=v=>pad.t+(hi-v)/range*ch,step=cw/data.length;
   for(let i=0;i<6;i++){const y=pad.t+ch*i/5;x.strokeStyle='#18212d';x.beginPath();x.moveTo(pad.l,y);x.lineTo(w-pad.r,y);x.stroke();x.fillStyle='#647386';x.font='10px system-ui';x.fillText(dp(hi-range*i/5),5,y+3)}
   data.forEach((d,i)=>{const xx=pad.l+(i+.5)*step,up=d.c>=d.o;x.strokeStyle=up?'#19d99b':'#ff5873';x.fillStyle=x.strokeStyle;if(chartType==='line'){if(i){x.beginPath();x.moveTo(pad.l+(i-.5)*step,scale(data[i-1].c));x.lineTo(xx,scale(d.c));x.stroke()}}else{x.beginPath();x.moveTo(xx,scale(d.h));x.lineTo(xx,scale(d.l));x.stroke();const bw=Math.max(2,step*.58),y=Math.min(scale(d.o),scale(d.c)),bh=Math.max(1,Math.abs(scale(d.o)-scale(d.c)));x.fillRect(xx-bw/2,y,bw,bh)}});
   const closes=data.map(d=>d.c);
   if(indicator==='ema'){const e=ema(closes,20);x.strokeStyle='#ffc857';x.lineWidth=2;x.beginPath();e.forEach((v,i)=>{const xx=pad.l+(i+.5)*step,yy=scale(v);i?x.lineTo(xx,yy):x.moveTo(xx,yy)});x.stroke();x.lineWidth=1}
   if(indicator==='bb'){const mid=sma(closes,20),sd=std(closes,20);[['#55d7ff',1],['#9f7cff',-1]].forEach(([col,mul])=>{x.strokeStyle=col;x.beginPath();mid.forEach((v,i)=>{const yy=scale(v+sd[i]*2*mul),xx=pad.l+(i+.5)*step;i?x.lineTo(xx,yy):x.moveTo(xx,yy)});x.stroke()});x.strokeStyle='#ffc85788';x.beginPath();mid.forEach((v,i)=>{const yy=scale(v),xx=pad.l+(i+.5)*step;i?x.lineTo(xx,yy):x.moveTo(xx,yy)});x.stroke()}
+  if(indicator==='custom'&&customSeries){x.strokeStyle='#55d7ff';x.lineWidth=2;x.beginPath();customSeries.forEach((v,i)=>{const xx=pad.l+(i+.5)*step,yy=scale(v);i?x.lineTo(xx,yy):x.moveTo(xx,yy)});x.stroke();x.lineWidth=1;x.fillStyle='#55d7ff';x.font='10px system-ui';x.fillText('CUSTOM • '+(state.customIndicator?.formula||''),pad.l+6,pad.t+12)}
   if(indicator==='rsi'){const vals=rsi(closes),top=h-rsiBand+8,bottom=h-28,rh=bottom-top;x.strokeStyle='#263448';[30,50,70].forEach(v=>{const yy=bottom-v/100*rh;x.beginPath();x.moveTo(pad.l,yy);x.lineTo(w-pad.r,yy);x.stroke();x.fillStyle='#647386';x.fillText(String(v),8,yy+3)});x.strokeStyle='#9f7cff';x.beginPath();vals.forEach((v,i)=>{const xx=pad.l+(i+.5)*step,yy=bottom-v/100*rh;i?x.lineTo(xx,yy):x.moveTo(xx,yy)});x.stroke()}
   state.trades.filter(t=>t.asset===state.selected&&t.mode===state.viewMode).forEach(t=>{const y=scale(t.entry);if(y<pad.t||y>pad.t+ch)return;x.save();x.setLineDash([6,5]);x.strokeStyle=t.side==='higher'?'#19d99b':'#ff5873';x.beginPath();x.moveTo(pad.l,y);x.lineTo(w-pad.r,y);x.stroke();x.restore();x.fillStyle=t.side==='higher'?'#19d99b':'#ff5873';x.font='bold 10px system-ui';const left=t.mode==='replay'?Math.max(0,t.replayExpiresIndex-replay.index)+' steps':Math.max(0,Math.ceil((t.expiresAt-Date.now())/1000))+'s';x.fillText(`${t.side==='higher'?'↑':'↓'} ${t.id} • ${left}`,pad.l+6,y-5)});
   const py=scale(currentPrice());x.save();x.setLineDash([3,4]);x.strokeStyle='#5aa7ff';x.beginPath();x.moveTo(pad.l,py);x.lineTo(w-pad.r,py);x.stroke();x.restore();x.fillStyle='#5aa7ff';x.font='bold 10px system-ui';x.fillText(dp(currentPrice()),w-54,py-5);
@@ -510,7 +567,7 @@ function drawChart(){
 }
 function initChartControls(){
   let dragging=false,sx=0,so=0;
-  chart.addEventListener('pointerdown',e=>{dragging=true;sx=e.clientX;so=chartOffset;chart.classList.add('dragging');chart.setPointerCapture(e.pointerId)});
+  chart.addEventListener('pointerdown',e=>{if(state.settings.mouseControl){updateMousePrice(e);return}dragging=true;sx=e.clientX;so=chartOffset;chart.classList.add('dragging');chart.setPointerCapture(e.pointerId)});
   chart.addEventListener('pointermove',e=>{if(state.settings.mouseControl)updateMousePrice(e);updateCrosshair(e);if(!dragging)return;const px=e.clientX-sx,src=state.viewMode==='replay'?replay.candles:market().candles;chartOffset=Math.max(0,Math.min(Math.max(0,src.length-20),so-Math.round(px/Math.max(4,chart.clientWidth/chartZoom))));chartLiveBtn.style.display=chartOffset?'block':'none';dirtyChart=true});
   const end=()=>{dragging=false;chart.classList.remove('dragging')};chart.addEventListener('pointerup',end);chart.addEventListener('pointercancel',end);chart.addEventListener('pointerleave',()=>{crosshair.style.display='none';chartTip.style.display='none'});
   chart.addEventListener('wheel',e=>{e.preventDefault();chartZoom=Math.max(20,Math.min(180,chartZoom+(e.deltaY>0?8:-8)));chartOffset=Math.min(chartOffset,Math.max(0,(state.viewMode==='replay'?replay.candles.length:market().candles.length)-chartZoom));dirtyChart=true},{passive:false});
@@ -527,11 +584,11 @@ function drawMiniCharts(){
 
 function seeded(seed){let s=(seed>>>0)||1;return()=>((s=Math.imul(1664525,s)+1013904223>>>0)/4294967296)}
 function buildReplay(){
-  replay.seed=Number(replaySeed?.value||42)||42;const rand=seeded(replay.seed),cfg=ASSET_CONFIG[state.selected];replay.data=[];replay.candles=[];let p=cfg.base,drift=0;
+  replay.seed=Number(replaySeed?.value||42)||42;replay.asset=state.selected;const rand=seeded(replay.seed),cfg=ASSET_CONFIG[replay.asset];replay.data=[];replay.candles=[];let p=cfg.base,drift=0;
   for(let i=0;i<360;i++){drift+=(rand()-.5)*.00045;drift=Math.max(-.0018,Math.min(.0018,drift));const o=p;p=Math.max(.00001,p*(1+drift+(rand()-.5)*cfg.vol*2.5));replay.data.push(p);replay.candles.push({o,h:Math.max(o,p)*(1+rand()*cfg.vol*.18),l:Math.min(o,p)*(1-rand()*cfg.vol*.18),c:p,t:Date.now()-(360-i)*1000})}
   replay.index=0;replay.price=replay.data[0];replay.playing=false;clearInterval(replay.timer);replayBtn.textContent='▶ Play';replayStatus.textContent='READY';replayCount.textContent='0 / '+replay.data.length;drawReplay();
 }
-function enterReplay(){state.viewMode='replay';replay.price=replay.data[Math.max(0,replay.index)]||replay.data[0];chartOffset=0;dirtyDOM=true;dirtyChart=true;page('trade');toast('Replay trading mode enabled','good')}
+function enterReplay(){if(replay.asset!==state.selected)buildReplay();state.viewMode='replay';replay.price=replay.data[Math.max(0,replay.index)]||replay.data[0];chartOffset=0;dirtyDOM=true;dirtyChart=true;page('trade');toast('Replay trading mode enabled','good')}
 function exitReplay(){state.viewMode='live';replay.playing=false;clearInterval(replay.timer);replayBtn.textContent='▶ Play';chartOffset=0;dirtyDOM=true;dirtyChart=true;page('trade');toast('Returned to live simulation')}
 function replayReset(){replay.playing=false;clearInterval(replay.timer);buildReplay();if(state.viewMode==='replay'){replay.price=replay.data[0];dirtyChart=true;dirtyDOM=true}}
 function replayStep(){
@@ -543,7 +600,21 @@ function toggleReplay(){
 }
 function drawReplay(){
   if(!document.getElementById('replay').classList.contains('active'))return;const c=replayChart,[x,w,h]=resizeCanvas(c);x.clearRect(0,0,w,h);x.fillStyle='#0b1017';x.fillRect(0,0,w,h);if(!replay.data.length)return;
-  const data=replay.data.slice(0,Math.max(2,replay.index+1)),mn=Math.min(...data),mx=Math.max(...data),rg=mx-mn||1;x.strokeStyle='#5aa7ff';x.lineWidth=2;x.beginPath();data.forEach((v,i)=>{const xx=18+i*(w-36)/Math.max(1,replay.data.length-1),yy=h-25-(v-mn)/rg*(h-50);i?x.lineTo(xx,yy):x.moveTo(xx,yy)});x.stroke();x.fillStyle='#647386';x.font='11px system-ui';x.fillText(`Seed ${replay.seed} • ${state.selected} replay`,12,16)
+  const data=replay.data.slice(0,Math.max(2,replay.index+1)),mn=Math.min(...data),mx=Math.max(...data),rg=mx-mn||1;x.strokeStyle='#5aa7ff';x.lineWidth=2;x.beginPath();data.forEach((v,i)=>{const xx=18+i*(w-36)/Math.max(1,replay.data.length-1),yy=h-25-(v-mn)/rg*(h-50);i?x.lineTo(xx,yy):x.moveTo(xx,yy)});x.stroke();x.fillStyle='#647386';x.font='11px system-ui';x.fillText(`Seed ${replay.seed} • ${replay.asset||state.selected} replay`,12,16)
+}
+
+function backgroundMarkets(now){
+  if(state.viewMode==='replay'||now-lastBackgroundTick<450)return;lastBackgroundTick=now;
+  const speedN=+speed.value;
+  Object.entries(state.markets).forEach(([name,m])=>{
+    if(name===state.selected)return;const cfg=ASSET_CONFIG[name],base=m.price*cfg.vol*(m.volatility/10)*speedN/7;let delta;
+    if(m.regime==='trend')delta=base*(.12+Math.random()*.38)*(Math.random()<.14?-1:1);
+    else if(m.regime==='volatile')delta=(Math.random()-.5)*base*3.3;
+    else if(m.regime==='breakout')delta=Math.random()>.9?(Math.random()>.5?1:-1)*base*4.8:(Math.random()-.5)*base*.7;
+    else if(m.regime==='calm')delta=(Math.random()-.5)*base*.3;else delta=(Math.random()-.5)*base*1.25;
+    m.prevPrice=m.price;m.target=Math.max(.00001,m.target+delta);m.price+=(m.target-m.price)*.22;
+    if(!m.candles.length||now-m.lastCandleAt>Math.max(900,timeframe*1000/3)){m.candles.push({o:m.prevPrice,h:Math.max(m.prevPrice,m.price),l:Math.min(m.prevPrice,m.price),c:m.price,t:Date.now()});if(m.candles.length>360)m.candles.shift();m.lastCandleAt=now}else{const c=m.candles[m.candles.length-1];c.c=m.price;c.h=Math.max(c.h,m.price);c.l=Math.min(c.l,m.price)}
+  });
 }
 
 function applyPreset(name){
@@ -559,8 +630,17 @@ function exportCSV(){
   const csv=rows.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\n'),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='novexa-v5-trades.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);toast('CSV exported','good')
 }
 function exportSession(){const blob=new Blob([JSON.stringify({...state,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='novexa-v5-session.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);toast('Session exported','good')}
+function cleanTrade(t,closed=false){
+  const asset=ASSET_CONFIG[t?.asset]?t.asset:'EUR/USD',side=t?.side==='lower'?'lower':'higher',mode=t?.mode==='replay'?'replay':'live';
+  const out={...t,id:String(t?.id||('NX-'+Date.now().toString(36))).replace(/[^A-Za-z0-9_-]/g,'').slice(0,40),asset,side,mode,amount:Math.max(0,Math.min(Number(t?.amount)||0,1e9)),entry:Number(t?.entry)||ASSET_CONFIG[asset].base,expiry:Math.max(5,Math.min(120,Number(t?.expiry)||30)),strategyTag:String(t?.strategyTag||'').slice(0,60),journal:String(t?.journal||'').slice(0,4000)};
+  if(closed){out.result=['WIN','LOSS','VOID'].includes(t?.result)?t.result:'VOID';out.won=out.result==='WIN'?true:out.result==='LOSS'?false:null;out.pl=Number(t?.pl)||0;out.exit=t?.exit==null?null:Number(t.exit);out.closed=Number(t?.closed)||Date.now()}
+  return out;
+}
 async function importSession(file){
-  if(!file)return;try{const x=JSON.parse(await file.text());if(!x||!x.markets||!Array.isArray(x.history))throw new Error('Invalid session');state={...state,...x,version:VERSION,viewMode:'live',forceMode:'off',sessionStarted:Date.now(),sessionTrades:0,settings:{...state.settings,...(x.settings||{})}};ensureMarkets();reconcileOfflineTrades();save();syncMarketControls();dirtyDOM=true;dirtyChart=true;toast('Session imported','good')}catch(e){toast('Could not import session','bad')}finally{importFile.value=''}
+  if(!file)return;try{if(file.size>2_000_000)throw new Error('Session too large');const x=JSON.parse(await file.text());if(!x||!x.markets||!Array.isArray(x.history))throw new Error('Invalid session');
+    const selected=ASSET_CONFIG[x.selected]?x.selected:'EUR/USD',balance=Math.max(0,Math.min(Number(x.balance)||10000,1e12));
+    state={...state,balance,selected,dailyGoal:Math.max(0,Number(x.dailyGoal)||0),history:x.history.slice(0,5000).map(t=>cleanTrade(t,true)),trades:Array.isArray(x.trades)?x.trades.slice(0,200).map(t=>cleanTrade(t,false)):[],equity:Array.isArray(x.equity)?x.equity.slice(-2000).map(Number).filter(Number.isFinite):[balance],markets:{},version:VERSION,viewMode:'live',forceMode:'off',sessionStarted:Date.now(),sessionTrades:0,settings:{...state.settings,...(x.settings||{})}};
+    ensureMarkets();reconcileOfflineTrades();assetSelect.value=state.selected;save();syncMarketControls();dirtyDOM=true;dirtyChart=true;toast('Session imported safely','good')}catch(e){toast('Could not import session','bad')}finally{importFile.value=''}
 }
 
 function openCommand(){cmdModal.classList.add('show');cmdInput.value='';cmdInput.focus();renderCommands()}
@@ -573,9 +653,13 @@ function initInputs(){
   window.addEventListener('resize',()=>{dirtyChart=true;drawMiniCharts();drawReplay()});
   speed.oninput=()=>{speedVal.textContent=speed.value+'x';speedTrade.value=speed.value;speedTradeVal.textContent=speed.value+'x'};speedTrade.oninput=()=>{speed.value=speedTrade.value;speedVal.textContent=speed.value+'x';speedTradeVal.textContent=speedTrade.value+'x'};
   volatility.oninput=()=>{market().volatility=+volatility.value;volVal.textContent=volatility.value;dirtyDOM=true;save()};
+  customIndicatorFormula.value=state.customIndicator?.formula||'EMA(9)';customIndicatorFormula.addEventListener('keydown',e=>{if(e.key==='Enter')applyCustomIndicator()});
 }
 function frame(now){
-  const dt=Math.min(1,(now-lastFrame)/1000);lastFrame=now;liveTick(dt);
+  const dt=Math.min(1,(now-lastFrame)/1000);lastFrame=now;liveTick(dt);backgroundMarkets(now);
+  if(now-lastFast>100){renderTop();lastFast=now}
+  if(state.trades.length&&now-lastOpenRefresh>900){dirtyDOM=true;lastOpenRefresh=now}
+  if(document.getElementById('markets').classList.contains('active')&&now-lastOpenRefresh>900){dirtyDOM=true;lastOpenRefresh=now}
   if(dirtyChart)drawChart();
   if(dirtyDOM&&now-lastDOM>180){render();lastDOM=now}
   if(now-lastMini>1200){drawMiniCharts();lastMini=now}
